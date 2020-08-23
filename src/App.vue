@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <keep-alive exclude="deTail">
+      <router-view></router-view>
+    </keep-alive>
+
     <tebelapp></tebelapp>
   </div>
 </template>

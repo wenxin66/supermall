@@ -5,6 +5,7 @@ const Home=()=>import('../views/Home/Home');
 const Category=()=>import('../views/Category/Category');
 const Shopcact=()=>import('../views/Shopcact/Shopcact');
 const profile=()=>import('../views/profile/profile');
+const detail=()=>import('../views/detail/deTail');
 
 Vue.use(VueRouter)
 
@@ -44,6 +45,13 @@ const router=new VueRouter({
             component:profile,
             meta:{
                 title:'我的'
+            }
+        },
+        {
+            path: '/detail/:iid',
+            component:detail,
+            meta:{
+                title:'详情页'
             }
         },
     ],

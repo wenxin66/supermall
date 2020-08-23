@@ -1,7 +1,9 @@
 <template>
   <div id="Home">
     <tabuse class="hom-tabuse"><div slot="tabuse-center">购物街</div></tabuse>
-
+    <tab-xuan-ze class="tab-xuan-ze" :tabxz="['流行','新款','精选']"
+                 @tabclick="tabclick" v-show="isshowbacktop"
+                  ref="topTabControl"></tab-xuan-ze>
     <scroll class="content"
             ref="scroll"
             :probetype="3"
@@ -11,7 +13,9 @@
       <home-swiper :banners="banners"/>
       <hometuijian :recommends="recommends"></hometuijian>
       <hometedian></hometedian>
-      <tab-xuan-ze class="tab-xuan-ze" :tabxz="['流行','新款','精选']" @tabclick="tabclick"></tab-xuan-ze>
+      <tab-xuan-ze class="tab-xuan-ze" :tabxz="['流行','新款','精选']"
+                   @tabclick="tabclick"
+                    ref="tabControl"></tab-xuan-ze>
       <good-list :goods="ShowGoods"></good-list>
     </scroll>
     <back-top @click.native="backclick" v-show="isshowbacktop"></back-top>
@@ -31,12 +35,6 @@
     import BackTop from "components/conent/backtop/BackTop";
     //
     import {getHomeMultidata,getHomeGoods} from "network/home";
-
-
-
-
-
-
 
     export default {
         name: "Home",
@@ -81,6 +79,10 @@
                 this.currenttype='sell'
                     break
             }
+            //让两个组件保持一致
+            this.$refs.topTabControl.currentIndex = index;
+            this.$refs.tabControl.currentIndex = index;
+
           },
          backclick(){
             //console.log(1);
@@ -88,7 +90,7 @@
          },
          contentscroll(position){
             // console.log(position)
-           (-position.y)>500?this.isshowbacktop=true:this.isshowbacktop=false
+           (-position.y)>550?this.isshowbacktop=true:this.isshowbacktop=false
          },
          loatMore(){
            // console.log("加载更多了")
@@ -125,17 +127,16 @@
   .hom-tabuse {
     background-color: #ff5777;
     color: #fff;
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    z-index: 9;
+    /*position: fixed;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*top: 0;*/
+    /*z-index: 9;*/
     font-size: 20px;
   }
   .tab-xuan-ze {
-    position: sticky;
-    top: 44px;
     z-index: 9;
+    top: 44px;
   }
   /**/
   .content {

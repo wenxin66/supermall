@@ -1,6 +1,6 @@
 <template>
     <div class="goods">
-        <GoodListItem v-for="item in goods" :goods-item="item"></GoodListItem>
+        <GoodListItem v-for="item in goods" :goods-item="item" ></GoodListItem>
     </div>
 </template>
 
@@ -16,7 +16,8 @@
                     return []
                 }
             }
-        }
+        },
+
     }
 </script>
 

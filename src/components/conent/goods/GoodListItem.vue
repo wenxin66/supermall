@@ -1,6 +1,7 @@
 <template>
-    <div class="goods-item">
-        <img :src="goodsItem.show.img" alt="">
+    <div class="goods-item" @click="tiaozhuang">
+
+        <img v-lazy="showimg" alt="">
         <div class="goods-info">
             <p>{{goodsItem.title}}</p>
             <span class="price">{{goodsItem.price}}</span>
@@ -15,9 +16,17 @@
         props:{
             goodsItem:{
                 type:Object,
-                default(){
-                    return {}
-                }
+                default: {}
+            }
+        },
+        computed: {
+          showimg () {
+            return this.goodsItem.image || this.goodsItem.show.img
+          }
+        },
+        methods:{
+            tiaozhuang(){
+                this.$router.push('/detail/'+this.goodsItem.iid);
             }
         }
     }
